@@ -1,0 +1,9 @@
+
+<h1><span>{{ title }} app is running</span></h1>
+<input type="search" (input)="updateBookList($event)"/>
+<app-book-card *ngFor="let book of books | bookFilter: bookSearchTerm"
+[content]="book"
+(detailClick)="handleEmitFromChild($event)">
+</app-book-card>
+
+
