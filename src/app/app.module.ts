@@ -3,15 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { BookModule } from './book/book.module';
-
+import {HttpClientModule} from '@angular/common/http';
 @NgModule({
   declarations: [
-    AppComponent,
-
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    BookModule
+    BookModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
