@@ -1,7 +1,7 @@
 <div class="container" *ngIf="content">
   <h3 [style]="customstyle">{{content.title}}</h3>
   <h4>{{content.author}}</h4>
-  <a href="#" (click)="handleDetailedClicked()">Detail link</a>
+  <a href="" (click)="handleDetailedClicked($event)">Detail link</a>
   <hr>
   <p>{{content.abstract}}</p>
 </div>

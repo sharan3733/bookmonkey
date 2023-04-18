@@ -3,7 +3,7 @@
 <input type="search" (input)="updateBookList($event)"/>
 <app-book-card *ngFor="let book of books$ |async"
 [content]="book"
-(detailClick)="handleEmitFromChild($event)">
+(detailClick)="goToBookDetails($event)">
 </app-book-card>
 
 

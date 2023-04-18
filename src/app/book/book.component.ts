@@ -2,6 +2,7 @@ import { BookApiService } from './book-api.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Book } from './book';
 import { Observable, Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-book',
@@ -16,7 +17,9 @@ export class BookComponent implements OnInit, OnDestroy{
   books$!: Observable<Book[]>;
   private subscription = Subscription.EMPTY;
 
-  constructor(private bookApiService: BookApiService,){
+  constructor(private bookApiService: BookApiService,
+    private router: Router){
+
 
   }
   ngOnDestroy(): void {
@@ -30,8 +33,13 @@ export class BookComponent implements OnInit, OnDestroy{
   handleEmitFromChild(evt:Book){
     console.log(evt);
   }
+  goToBookDetails(book: Book) {
+    this.router.navigate(['books', 'details', book.isbn]);
+  }
   updateBookList(input: Event){
     this.bookSearchTerm =(input.target as HTMLInputElement).value;
   }
+  //this.book$ = this.bookApi.searchBytitle(this.booksearchTerm);
+
 
 }

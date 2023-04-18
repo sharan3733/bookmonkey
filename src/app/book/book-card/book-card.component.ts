@@ -13,7 +13,9 @@ export class BookCardComponent {
 customstyle ={
   color: 'green'
 };
-handleDetailedClicked():void{
+handleDetailedClicked(click: MouseEvent){
+  click.preventDefault()
+
   this.detailClick.emit(this.content);
 }
 }
