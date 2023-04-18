@@ -7,26 +7,25 @@ import { HttpClient } from '@angular/common/http';
 })
 export class BookApiService  {
 
- public books: Book[] = [
-  {
-    title: 'Hello Angular',
-    author: 'sukhman',
-    abstract:'loremgmwrmgkreemthhnmlmhkiti'
-  },
-  {
-    title: 'Hello Java',
-    author: 'sukhu',
-    abstract:'loremgmwrmgkreemthhnmlmhkiti qsFAMFF NKJGN KGNG RK'
+ public books: Book[] = [];
+ private endpoint = 'http://localhost:4730';
 
-  }
-]
 
   constructor(
-    private httpClient: HttpClient,
-  ) { }
+    private http: HttpClient) { }
 
   getAll(): Observable<Book[]>{
-    return this.httpClient.get<Book[]>('http://localhost:4730/books');
+    return this.http.get<Book[]>('http://localhost:4730/books');
+  }
+  searchByTitle(booksearchTerm: string){
+   // this.filteredBook$ = this.books.filter((book))
+  }
+  getBookByIsbn(isbn: string){
+   return this.http.get('http://localhost:4730/books/:isbn');
+  }
+  getByIsbn(isbn: string): Observable<Book>{
+    return this.http.get<Book>(`${this.endpoint}/books/${isbn}`);
+
   }
   }
 
