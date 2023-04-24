@@ -9,12 +9,17 @@ import { Observable, switchMap, } from 'rxjs';
   templateUrl: './book-detail.component.html',
   styleUrls: ['./book-detail.component.scss']
 })
-export class BookDetailComponent {
-
+export class BookDetailComponent implements OnInit{
+isbn!: string;
 book$!:Observable<Book>;
-constructor(private route: ActivatedRoute, private bookApi: BookApiService) {
-  this.book$ = this.route.params.pipe(
-    switchMap(params => this.bookApi.getByIsbn(params?.['isbn']))
-  );
-}
+
+constructor(
+  private route: ActivatedRoute,
+  private bookApi: BookApiService) {}
+
+  ngOnInit(): void {
+    this.book$ = this.route.params.pipe(
+      switchMap(params => this.bookApi.getByIsbn(params?.['isbn']))
+    );
+  }
 }

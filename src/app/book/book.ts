@@ -4,6 +4,5 @@ export interface Book {
   abstract:string,
   isbn: string,
   cover:string,
-  numPages: number,
-  subtitle: string
+
 }

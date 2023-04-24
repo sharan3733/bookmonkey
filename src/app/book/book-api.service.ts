@@ -1,31 +1,27 @@
-import { Injectable, OnInit } from '@angular/core';
-import { Book } from './book';
-import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-@Injectable({
-  providedIn: 'root'
-})
-export class BookApiService  {
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Book } from './book';
 
- public books: Book[] = [];
- private endpoint = 'http://localhost:4730';
+@Injectable({ providedIn: 'root' })
+export class BookApiService {
+  private endpoint = 'http://localhost:4730';
 
+  constructor(private http: HttpClient) {}
 
-  constructor(
-    private http: HttpClient) { }
-
-  getAll(): Observable<Book[]>{
-    return this.http.get<Book[]>('http://localhost:4730/books');
+  create(book: Book): Observable<Book> {
+    return this.http.post<Book>(`${this.endpoint}/books/`, book);
   }
-  searchByTitle(booksearchTerm: string){
-   // this.filteredBook$ = this.books.filter((book))
+
+  getAll(): Observable<Book[]> {
+    return this.http.get<Book[]>(`${this.endpoint}/books`);
   }
-  getBookByIsbn(isbn: string){
-   return this.http.get('http://localhost:4730/books/:isbn');
-  }
-  getByIsbn(isbn: string): Observable<Book>{
+
+  getByIsbn(isbn: string): Observable<Book> {
     return this.http.get<Book>(`${this.endpoint}/books/${isbn}`);
-
-  }
   }
 
+  save(book: Book): Observable<Book> {
+    return this.http.put<Book>(`${this.endpoint}/books/${book.isbn}`, book);
+  }
+}
